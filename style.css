@@ -1,0 +1,7 @@
+body {
+  margin: 2em;
+}
+
+progress.track-progress{
+  height: 2.5rem;
+}
