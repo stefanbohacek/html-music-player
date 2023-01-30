@@ -1,11 +1,11 @@
-fetch( '/tracklist.json' ).then( function( response ){ 
+fetch('/tracklist.json').then(function(response){ 
 	return response.json();
-} ).then( function( trackList ){
+}).then(trackList => {
 
-  let player = document.querySelector( '#player' );
+  let player = document.querySelector('#player');
   let html = '<ul id="player" class="d-none list-group mt-5 mb-5">';
 
-  for ( let i = 0; i < trackList.length; i++ ){
+  for (let i = 0; i < trackList.length; i++){
     let htmlButtons = `
         <button type="button" class="btn btn-dark track-control track-control-play" data-track-id="${ i+1 }">Play</button>
         <button type="button" class="btn btn-dark track-control track-control-stop" data-track-id="${ i+1 }">Stop</button>  
@@ -24,16 +24,16 @@ fetch( '/tracklist.json' ).then( function( response ){
   }
 
   player.outerHTML = html + '</ul>';
-  player = document.querySelector( '#player' );
+  player = document.querySelector('#player');
 
-  document.addEventListener( 'play', function( ev ){
-      var audios = document.getElementsByTagName( 'audio' );
-      for( var i = 0, len = audios.length; i < len;i++ ){
-          if( audios[i] != ev.target ){
+  document.addEventListener('play', ev => {
+      const audios = document.getElementsByTagName('audio');
+      for(let i = 0, len = audios.length; i < len;i++){
+          if(audios[i] != ev.target){
               audios[i].pause();
           }
       }
-  }, true );
+  }, true);
   
-  player.classList.remove( 'd-none' )
+  player.classList.remove('d-none')
 });
